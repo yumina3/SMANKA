@@ -1,15 +1,16 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { sekolah } from "@/data/sekolah";
 
 const menu = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+  { label: "Beranda", href: "/" },
+  { label: "Profil", href: "/about" },
   { label: "Kesiswaan", href: "/kesiswaan" },
+  { label: "Akademik", href: "/akademik" },
   { label: "Berita", href: "/berita" },
 ];
 
-// Ikon brand media sosial (inline SVG, karena lucide tidak lagi menyediakannya)
 const sosial = [
   {
     label: "Instagram",
@@ -30,14 +31,27 @@ const sosial = [
 
 export default function Footer() {
   return (
-    <footer className="bg-background border-t border-black/10">
-      <div className="max-w-6xl mx-auto px-6 py-16 grid gap-10 md:grid-cols-3">
+    <footer className="bg-[#071829] text-white">
+      {/* Konten utama */}
+      <div className="max-w-6xl mx-auto px-6 pt-16 pb-12 grid gap-12 md:grid-cols-3">
+        {/* Brand */}
         <div>
-          <h2 className="font-semibold text-lg">{sekolah.nama}</h2>
-          <p className="mt-3 text-sm text-foreground/50 leading-relaxed max-w-xs">
+          <div className="flex items-center gap-3 mb-5">
+            <Image
+              src="/logo.png"
+              alt={`Logo ${sekolah.nama}`}
+              width={44}
+              height={44}
+              className="h-10 w-10 object-contain"
+            />
+            <span className="text-base font-bold text-white tracking-wide">
+              SMA N 1 KAJEN
+            </span>
+          </div>
+          <p className="text-sm text-white/60 leading-relaxed max-w-xs">
             {sekolah.slogan}
           </p>
-          <ul className="mt-5 flex items-center gap-3">
+          <ul className="mt-6 flex items-center gap-2">
             {sosial.map(({ label, href, path }) => (
               <li key={label}>
                 <a
@@ -45,12 +59,12 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-surface text-brand-light hover:bg-brand hover:text-white transition-colors"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 hover:bg-[#2C98ED] hover:text-white transition-all duration-200"
                 >
                   <svg
                     viewBox="0 0 24 24"
-                    width={18}
-                    height={18}
+                    width={16}
+                    height={16}
                     fill="currentColor"
                     aria-hidden="true"
                   >
@@ -62,16 +76,17 @@ export default function Footer() {
           </ul>
         </div>
 
+        {/* Menu */}
         <div>
-          <h3 className="text-xs uppercase tracking-widest text-foreground/50">
-            Menu
+          <h3 className="text-xs uppercase tracking-widest text-white/40 mb-5 font-semibold">
+            Navigasi
           </h3>
-          <ul className="mt-4 space-y-3">
+          <ul className="space-y-3">
             {menu.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+                  className="text-sm text-white/60 hover:text-white transition-colors duration-200"
                 >
                   {item.label}
                 </Link>
@@ -80,30 +95,32 @@ export default function Footer() {
           </ul>
         </div>
 
+        {/* Kontak */}
         <div>
-          <h3 className="text-xs uppercase tracking-widest text-foreground/50">
+          <h3 className="text-xs uppercase tracking-widest text-white/40 mb-5 font-semibold">
             Kontak
           </h3>
-          <ul className="mt-4 space-y-3 text-sm text-foreground/70">
+          <ul className="space-y-4 text-sm text-white/60">
             <li className="flex gap-3">
-              <MapPin size={18} className="text-brand-light shrink-0 mt-0.5" />
-              <span>{sekolah.alamat}</span>
+              <MapPin size={16} className="text-[#2C98ED] shrink-0 mt-0.5" />
+              <span className="leading-relaxed">{sekolah.alamat}</span>
             </li>
             <li className="flex gap-3">
-              <Phone size={18} className="text-brand-light shrink-0" />
+              <Phone size={16} className="text-[#2C98ED] shrink-0" />
               <span>{sekolah.telepon}</span>
             </li>
             <li className="flex gap-3">
-              <Mail size={18} className="text-brand-light shrink-0" />
+              <Mail size={16} className="text-[#2C98ED] shrink-0" />
               <span>{sekolah.email}</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-black/10">
-        <p className="max-w-6xl mx-auto px-6 py-6 text-sm text-foreground/50">
-          © 2026 {sekolah.nama}
+      {/* Copyright */}
+      <div className="border-t border-white/10">
+        <p className="max-w-6xl mx-auto px-6 py-5 text-xs text-white/40">
+          © 2026 SMA N 1 KAJEN. Hak cipta dilindungi.
         </p>
       </div>
     </footer>

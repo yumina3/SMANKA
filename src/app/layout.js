@@ -1,8 +1,7 @@
+import { Suspense } from "react";
 import { Poppins } from "next/font/google";
 import { Lora } from "next/font/google";
 import { Roboto } from "next/font/google";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -37,9 +36,7 @@ export default function RootLayout({ children }) {
       className={`${poppins.variable} ${lora.variable} ${roboto.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

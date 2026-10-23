@@ -1,6 +1,8 @@
+import { daftarKelas } from "@/data/kelas";
+
 export const sekolah = {
   nama: "SMA Negeri 1 Kajen",
-  slogan: "Mandiri, Agamis, Terdepan dalam prestasi dan Berwawasan lingkungan",
+  slogan: "Unggul dalam prestasi, Luhur dalam budi pekerti dan berwawasan lingkungan",
   alamat: "Jl. Ahmad Yani No. 1, Kajen, Kabupaten Pekalongan, Jawa Tengah 51161",
   telepon: "(0285) 381 708",
   email: "smankajen@gmail.com",
@@ -10,12 +12,12 @@ export const sekolah = {
     jabatan: "Kepala SMA Negeri 1 Kajen",
     gambar: "/sambutan.jpg",
   },
-  visi: "Unggul dalam prestasi, Luhur dalam budi pekerti",
+  visi: "Unggul dalam prestasi, Luhur dalam budi pekerti dan berwawasan lingkungan",
   misi: [
-    "Untuk membuat kelulusan unggul dalam akademik, yang keyakinan pada Tuhan, dan memiliki mulia dalam perilaku.",
-    "Untuk meningkatkan kualitas kegiatan belajar mengajar secara efektif dan efisien.",
-    "Untuk memberikan disiplin sikap kepribadian yang tinggi di sekolah.",
-    "Untuk membuat para anggota komunitas sekolah yang memiliki komitmen yang tinggi untuk visi sekolah.",
+    "Membuat kelulusan yang unggul dalam akademik, memiliki keyakinan kepada Tuhan, dan berakhlak mulia.",
+    "Meningkatkan kualitas kegiatan belajar mengajar secara efektif dan efisien.",
+    "Menanamkan disiplin dan sikap kepribadian yang tinggi di lingkungan sekolah.",
+    "Membangun komitmen yang tinggi dari seluruh anggota komunitas sekolah terhadap visi sekolah.",
   ],
   sejarah: [
     { tahun: "1965", teks: "Berdiri sebagai sekolah menengah atas pertama di Kecamatan Kajen dengan dua ruang kelas." },
@@ -24,6 +26,7 @@ export const sekolah = {
     { tahun: "2016", teks: "Meraih akreditasi A dan mulai mengembangkan pembelajaran berbasis teknologi informasi." },
     { tahun: "2023", teks: "Menerapkan Kurikulum Merdeka dan memperoleh berbagai prestasi tingkat provinsi dan nasional." },
   ],
+  kelas: daftarKelas,
   fasilitas: [
     "3 Ruangan Seni (Musik, Tari, Melukis) ",
     "Laboratorium IPA (Fisika, Kimia, Biologi)",
@@ -63,7 +66,7 @@ export const sekolah = {
     {
       tag: "Karakter",
       judul: "Program Penguatan Karakter",
-      deskripsi: "Kegiatan pembinaan akhlak, kepemimpinan, dan kepedulian sosial melalui Pramuka, keagamaan, serta bakti lingkungan.",
+      deskripsi: "Pembinaan akhlak, kepemimpinan, dan kepedulian sosial melalui Pramuka, keagamaan, serta bakti lingkungan.",
       gambar: "/program2.jpg",
     },
   ],

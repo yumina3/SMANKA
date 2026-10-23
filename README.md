@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Website Profil SMA Negeri 1 Kajen
 
-## Getting Started
+Website profil sekolah dengan panel admin, dibangun dengan Next.js App Router,
+JavaScript, Tailwind CSS, dan Supabase sebagai basis data.
 
-First, run the development server:
+## Menjalankan
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka http://localhost:3000.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Konfigurasi
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Salin `.env.example` menjadi `.env.local` lalu isi:
 
-## Learn More
+| Variabel | Wajib | Keterangan |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | ya | Project Settings → API |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | ya | Project Settings → API |
+| `SUPABASE_SERVICE_ROLE_KEY` | tidak | Hanya untuk seed/migrasi lokal |
+| `DATABASE_URL` | tidak | Port 6543 (transaction pooler) |
 
-To learn more about Next.js, take a look at the following resources:
+## Basis Data
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Jalankan berurutan di Supabase → SQL Editor:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. `supabase/migrations/0001_init.sql` — tabel, RLS, dan kebijakan akses
+2. `supabase/migrations/0002_storage_berita.sql` — bucket gambar berita
+3. `supabase/seed.sql` — data contoh
 
-## Deploy on Vercel
+Akun admin dibuat lewat Supabase → Authentication → Users (email + password).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Struktur
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/app/(site)/   halaman publik (beranda, about, akademik, berita, kesiswaan)
+src/app/admin/    panel admin (dilindungi Supabase Auth)
+src/components/   komponen publik dan admin
+src/lib/          akses data Supabase, auth, format, storage
+supabase/         migrasi SQL dan data seed
+```
+
+## Skrip
+
+| Perintah | Keterangan |
+| --- | --- |
+| `npm run dev` | Server pengembangan |
+| `npm run build` | Build produksi |
+| `npm start` | Jalankan hasil build |
+| `npm run lint` | ESLint |
+
+## Catatan
+
+Halaman publik yang menampilkan data dinamis (`/berita/[id]`) dirender di
+server, sedangkan daftar berita, kalender, dan agenda di panel admin memakai
+Supabase client di browser sehingga membutuhkan sesi admin yang aktif.
